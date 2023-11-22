@@ -33,4 +33,5 @@ Ejecutamos el comando `rails server` nuevamente, nos dirigirnos a nuestro navega
 ![2](https://github.com/miguelvega/Ajax/assets/124398378/c5c695a0-6271-4154-b648-6d5bf6d200ee)
 
 
+Sin embargo, cuando queremos editar una pelicula nos ndica que estamos intentando acceder a la acción edit del controlador MoviesController, pero Rails no puede encontrar la plantilla correspondiente para renderizar en el formato text/html.
 
