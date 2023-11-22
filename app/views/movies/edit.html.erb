@@ -1,0 +1,27 @@
+<h2>Edit Existing Movie</h2>
+
+<%= form_for @movie, url: movie_path(@movie), method: :patch do |form| %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :title, 'Title', class: 'col-form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-md-3">
+      <%= form.label :rating, 'Rating', class: 'col-form-label' %>
+      <%= form.select :rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], { prompt: 'Select Rating' }, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :release_date, 'Released On', class: 'col-form-label' %>
+    <%= form.date_select :release_date, { start_year: 1970, end_year: Date.today.year }, class: 'form-control col-2 d-inline' %>
+  </div>
+
+  <br/>
+
+  <div class="form-group">
+    <%= form.submit 'Update Movie Info', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', movies_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
