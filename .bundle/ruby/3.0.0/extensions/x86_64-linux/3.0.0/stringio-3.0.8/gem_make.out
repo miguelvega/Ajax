@@ -1,0 +1,15 @@
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/stringio-3.0.8/ext/stringio
+/home/miguelubuntu/.rbenv/versions/3.0.2/bin/ruby -I /home/miguelubuntu/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20231122-10715-cai641.rb extconf.rb
+creating Makefile
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/stringio-3.0.8/ext/stringio
+make DESTDIR\= clean
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/stringio-3.0.8/ext/stringio
+make DESTDIR\=
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/stringio-3.0.8/ext/stringio
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20231122-10715-82irf5

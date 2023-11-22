@@ -1,0 +1,15 @@
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/home/miguelubuntu/.rbenv/versions/3.0.2/bin/ruby -I /home/miguelubuntu/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20231122-10715-acpmd0.rb extconf.rb
+creating Makefile
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= clean
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\=
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/miguelubuntu/Escritorio/CC3S2/Actividad_Ajax/Ajax/.bundle/ruby/3.0.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20231122-10715-u43qb9
