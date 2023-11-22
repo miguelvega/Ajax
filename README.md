@@ -33,6 +33,4 @@ Ejecutamos el comando `rails server` nuevamente, nos dirigirnos a nuestro navega
 ![2](https://github.com/miguelvega/Ajax/assets/124398378/c5c695a0-6271-4154-b648-6d5bf6d200ee)
 
 
-  
 
-https://e.saasbook.info/chapter/6/section/6
