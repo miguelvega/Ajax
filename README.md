@@ -33,5 +33,17 @@ Ejecutamos el comando `rails server` nuevamente, nos dirigirnos a nuestro navega
 ![2](https://github.com/miguelvega/Ajax/assets/124398378/c5c695a0-6271-4154-b648-6d5bf6d200ee)
 
 
-Sin embargo, cuando queremos editar una pelicula nos ndica que estamos intentando acceder a la acción edit del controlador MoviesController, pero Rails no puede encontrar la plantilla correspondiente para renderizar en el formato text/html.
+Sin embargo, cuando queremos editar una pelicula nos indica que estamos intentando acceder a la acción edit del controlador MoviesController, pero Rails no puede encontrar la plantilla correspondiente para renderizar en el formato text/html. Por lo tanto, agragamos la vista denominandola edit.html.erb, pero al actualizar la informacion de la pelicula en cuestion nos muestra un error.
+
+
+## Parte 1
+
+Agregamos la siguiente linea de código para mostrar la acción del controlador que renderizara una vista parcial llamada 'movie'   y pasa la variable @movie a esa vista que contiene la información de la película, siempre y cuando sea una solicitud AJAX.
+
+```ruby
+render(:partial => 'movie', :object => @movie) if request.xhr?
+```
+
+De tal manera que nuestra acción show del controlador estará diseñada para manejar tanto solicitudes normales como solicitudes AJAX.
+
 
