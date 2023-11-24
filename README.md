@@ -45,5 +45,12 @@ render(:partial => 'movie', :object => @movie) if request.xhr?
 ```
 
 De tal manera que nuestra acción show del controlador estará diseñada para manejar tanto solicitudes normales como solicitudes AJAX.
+Esta modificacion de la acción show está respondiendo a una petición AJAX, esto procesará la sencilla vista parcial del siguiente codigo en lugar de la vista completa.
 
+```ruby
+ <p> <%= movie.description %> </p>
+ <%= link_to 'Edit Movie', edit_movie_path(movie), :class => 'btn btn-primary' %>
+ <%= link_to 'Close', '', :id => 'closeLink', :class => 'btn btn-secondary' %>
+```
 
+## Parte 2
