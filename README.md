@@ -52,6 +52,6 @@ Esta modificacion de la acción show está respondiendo a una petición AJAX, es
  <%= link_to 'Edit Movie', edit_movie_path(movie), :class => 'btn btn-primary' %>
  <%= link_to 'Close', '', :id => 'closeLink', :class => 'btn btn-secondary' %>
 ```
-El codigo anterior estara contenido en el archivo `_movie.html.erb`, ya que segun la convención en Rails para vistas parciales debemos comenzar el nombre del archivo con un guion bajo (_) seguido del nombre de la vista y estara ubicado en el siguiente directorio app/views/movies. Esto debido a la linea  `render(:partial => 'movie', :object => @movie) if request.xhr?
+El codigo anterior estara contenido en el archivo `_movie.html.erb`, ya que segun la convención en Rails para vistas parciales debemos comenzar el nombre del archivo con un guion bajo (_) seguido del nombre de la vista y estara ubicado en el siguiente directorio app/views/movies.
 `.
 ## Parte 2
