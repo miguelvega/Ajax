@@ -38,20 +38,29 @@ Sin embargo, cuando queremos editar una pelicula nos indica que estamos intentan
 
 ## Parte 1
 
-Agregamos la siguiente linea de código para mostrar la acción del controlador que renderizara una vista parcial llamada 'movie'   y pasa la variable @movie a esa vista que contiene la información de la película, siempre y cuando sea una solicitud AJAX.
+Incorporamos la siguiente línea de código con el propósito de exhibir la acción del controlador responsable de renderizar una vista parcial denominada 'movie'. Además, se transmite la variable @movie a dicha vista, la cual contiene la información de la película. Esto se ejecutará en caso de que la solicitud sea de tipo AJAX, procesando así una vista parcial sencilla en lugar de la vista completa.
 
 ```ruby
 render(:partial => 'movie', :object => @movie) if request.xhr?
 ```
+Con esta modificacion de nuestra acción 'show' del controlador estará diseñada de manera que puede gestionar tanto solicitudes normales como solicitudes AJAX.
 
-De tal manera que nuestra acción show del controlador estará diseñada para manejar tanto solicitudes normales como solicitudes AJAX.
-Esta modificacion de la acción show está respondiendo a una petición AJAX, esto procesará la sencilla vista parcial del siguiente codigo en lugar de la vista completa.
+```ruby
+def show
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    render(:partial => 'movie', :object => @movie) if request.xhr?
+    # will render app/views/movies/show.<extension> by default
+end
+
+```
+Segun la convención en Rails para vistas parciales debemos comenzar el nombre del archivo con un guion bajo (_) seguido del nombre de la vista, es decir nuestro archivo de vista parcial se denominara `_movie.html.erb` y estara ubicado en el directorio app/views/movies de nuestro proyecto y contendra la siguientes lineas de codigo :
 
 ```ruby
  <p> <%= movie.description %> </p>
  <%= link_to 'Edit Movie', edit_movie_path(movie), :class => 'btn btn-primary' %>
  <%= link_to 'Close', '', :id => 'closeLink', :class => 'btn btn-secondary' %>
 ```
-El codigo anterior estara contenido en el archivo `_movie.html.erb`, ya que segun la convención en Rails para vistas parciales debemos comenzar el nombre del archivo con un guion bajo (_) seguido del nombre de la vista y estara ubicado en el siguiente directorio app/views/movies.
-`.
+Entonces, si la solicitud es una solicitud AJAX, este código en la vista parcial 'movie' se renderizará y se enviará al cliente. La vista parcial mostrará la descripción de la película. 
+Estos elementos formarán la respuesta que se envía al cliente cuando se realiza una solicitud AJAX para la acción show del controlador
 ## Parte 2
