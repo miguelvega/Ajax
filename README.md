@@ -163,4 +163,4 @@ Conviene mencionar una advertencia a considerar cuando se usa JavaScript para cr
 
 Para resolver esta situación, jQuery introduce el método on() con un enfoque de delegación. En vez de asignar directamente el manejador de eventos a elementos específicos, se vincula a un elemento padre existente presente en el momento de la vinculación del evento. Este elemento padre funciona como un "delegado" que gestionará los eventos de los elementos hijos, incluyendo aquellos que se generan dinámicamente después de que la página ha sido cargada.
 
-Ademas, recordemos que en el archivo movie_popup,js se uso la delegacion de eventos para cada enlace dentro del documento, se le asigno en el evento click, con la función getMovieInfo.
+Ademas, recordemos que en el archivo movie_popup,js se uso la delegacion de eventos para cada enlace dentro del documento.
