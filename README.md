@@ -64,3 +64,64 @@ Segun la convención en Rails para vistas parciales debemos comenzar el nombre d
 Entonces, si la solicitud es una solicitud AJAX, este código en la vista parcial 'movie' se renderizará y se enviará al cliente. La vista parcial mostrará la descripción de la película. 
 Estos elementos formarán la respuesta que se envía al cliente cuando se realiza una solicitud AJAX para la acción show del controlador
 ## Parte 2
+
+### ¿Cómo debería construir y lanzar la petición XHR el código JavaScript?
+
+Primero debemos crear un archivo javascript  movie_popup.js
+
+```ruby
+
+var MoviePopup = {
+  setup: function() {
+    // add hidden 'div' to end of page to display popup:
+    let popupDiv = $('<div id="movieInfo"></div>');
+    popupDiv.hide().appendTo($('body'));
+    $(document).on('click', '#movies a', MoviePopup.getMovieInfo);
+  }
+  ,getMovieInfo: function() {
+    $.ajax({type: 'GET',
+            url: $(this).attr('href'),
+            timeout: 5000,
+            success: MoviePopup.showMovieInfo,
+            error: function(xhrObj, textStatus, exception) { alert('Error!'); }
+            // 'success' and 'error' functions will be passed 3 args
+           });
+    return(false);
+  }
+  ,showMovieInfo: function(data, requestStatus, xhrObject) {
+    // center a floater 1/2 as wide and 1/4 as tall as screen
+    let oneFourth = Math.ceil($(window).width() / 4);
+    $('#movieInfo').
+      css({'left': oneFourth,  'width': 2*oneFourth, 'top': 250}).
+      html(data).
+      show();
+    // make the Close link in the hidden element work
+    $('#closeLink').click(MoviePopup.hideMovieInfo);
+    return(false);  // prevent default link action
+  }
+  ,hideMovieInfo: function() {
+    $('#movieInfo').hide();
+    return(false);
+  }
+};
+$(MoviePopup.setup);
+
+```
+Este código en JavaScript está diseñado para mostrar información detallada sobre una película en una ventana emergente (popup) cuando el usuario hace clic en un enlace asociado a esa película.
+
+Primero se crea un objeto llamado MoviePopup que contiene cuatro funciones (setup, getMovieInfo, showMovieInfo y hideMovieInfo).
+
+La funcion setup se encarga de la configuración inicial. 
+Creamos un nuevo elemento de tipo div en jQuery y lo asigna a la variable popupDiv. Este nuevo div tiene el ID "movieInfo" donde la notación $('<div></div>') en jQuery se utiliza para crear un nuevo elemento HTML en memoria, este div creado se utilizará para contener y mostrar la información detallada de la película en una ventana emergente. El ID "movieInfo" se usa para referenciar este elemento más adelante en el código, por ejemplo, para establecer su contenido y estilo.
+Luego, `popupDiv.hide()` oculta el elemento div. Esto significa que, inicialmente, la ventana emergente está configurada para no ser visible cuando se crea y `.appendTo($('body'))` adjunta el elemento div al final del cuerpo del documento ($('body')). Esto significa que el div oculto se agrega al final del cuerpo HTML en el DOM. Con esto agregamos el elemento al cuerpo y se prepara para su posterior visualización y manipulación. 
+La última línea dentro de la función setup tenemos  $(document), con esto seleccionamos el objeto document, que representa todo el documento HTML y `.on('click', '#movies a', MoviePopup.getMovieInfo)` establece un manejador de eventos en el documento (document). Los parámetros de esta función `.on` son los siguientes:
+'click': Especifica que estamos manejando el evento de clic.
+'#movies a': Selecciona todos los elementos de anclaje (a) que son descendientes de elementos con el ID movies.
+MoviePopup.getMovieInfo: Es la función que se ejecutará cuando se haga clic en uno de esos enlaces.
+
+La función getMovieInfo se encarga de recuperar información detallada sobre una película. Para lograrlo, realiza una solicitud AJAX ($.ajax) de tipo GET a la URL especificada en el atributo href del enlace que fue clicado ($(this).attr('href')). Se establece un límite de tiempo de 5 segundos (timeout: 5000). En caso de que la solicitud sea exitosa, la función MoviePopup.showMovieInfo se invoca con los datos recibidos. En caso de un error en la solicitud, se muestra una alerta. La función retorna false con el fin de prevenir la acción predeterminada del enlace.
+
+La función showMovieInfo despliega información detallada de la película en una ventana emergente. Para lograrlo, centra la ventana en la pantalla, ajustando sus propiedades de posición y tamaño. Luego, llena la ventana con el contenido HTML obtenido como respuesta de la solicitud AJAX (data), y la presenta visualmente mediante $('#movieInfo').show(). Además, se vincula un evento de clic al enlace de cierre (#closeLink), el cual invoca la función MoviePopup.hideMovieInfo. Finalmente, la función retorna false para evitar la ejecución de la acción predeterminada del enlace.
+
+
+
