@@ -40,7 +40,7 @@ Sin embargo, cuando queremos editar una pelicula nos indica que estamos intentan
 
 Incorporamos la siguiente línea de código con el propósito de exhibir la acción del controlador responsable de renderizar una vista parcial denominada 'movie'. Además, se transmite la variable @movie a dicha vista, la cual contiene la información de la película. Esto se ejecutará en caso de que la solicitud sea de tipo AJAX, procesando así una vista parcial sencilla en lugar de la vista completa.
 
-```ruby
+```
 render(:partial => 'movie', :object => @movie) if request.xhr?
 ```
 Con esta modificacion de nuestra acción 'show' del controlador estará diseñada de manera que puede gestionar tanto solicitudes normales como solicitudes AJAX.
@@ -56,7 +56,7 @@ end
 ```
 Segun la convención en Rails para vistas parciales debemos comenzar el nombre del archivo con un guion bajo (_) seguido del nombre de la vista, es decir nuestro archivo de vista parcial se denominara `_movie.html.erb` y estara ubicado en el directorio app/views/movies de nuestro proyecto y contendra la siguientes lineas de codigo :
 
-```ruby
+```
  <p> <%= movie.description %> </p>
  <%= link_to 'Edit Movie', edit_movie_path(movie), :class => 'btn btn-primary' %>
  <%= link_to 'Close', '', :id => 'closeLink', :class => 'btn btn-secondary' %>
@@ -69,7 +69,7 @@ Estos elementos formarán la respuesta que se envía al cliente cuando se realiz
 
 Primero debemos crear un archivo javascript  movie_popup.js
 
-```ruby
+```
 
 var MoviePopup = {
   setup: function() {
@@ -114,14 +114,35 @@ Primero se crea un objeto llamado MoviePopup que contiene cuatro funciones (setu
 La funcion setup se encarga de la configuración inicial. 
 Creamos un nuevo elemento de tipo div en jQuery y lo asigna a la variable popupDiv. Este nuevo div tiene el ID "movieInfo" donde la notación` $('<div></div>') `en jQuery se utiliza para crear un nuevo elemento HTML en memoria, este div creado se utilizará para contener y mostrar la información detallada de la película en una ventana emergente. El ID "movieInfo" se usa para referenciar este elemento más adelante en el código, por ejemplo, para establecer su contenido y estilo.
 Luego, `popupDiv.hide()` oculta el elemento div. Esto significa que, inicialmente, la ventana emergente está configurada para no ser visible cuando se crea y `.appendTo($('body'))` adjunta el elemento div al final del cuerpo del documento ($('body')). Esto significa que el div oculto se agrega al final del cuerpo HTML en el DOM. Con esto agregamos el elemento al cuerpo y se prepara para su posterior visualización y manipulación. 
-La última línea dentro de la función setup tenemos  `$(document)`, con esto seleccionamos el objeto document, que representa todo el documento HTML y `.on('click', '#movies a', MoviePopup.getMovieInfo)` establece un manejador de eventos en el documento (document). Los parámetros de esta función `.on` son los siguientes:
-'click': Especifica que estamos manejando el evento de clic.
-'#movies a': Selecciona todos los elementos de anclaje (a) que son descendientes de elementos con el ID movies.
-MoviePopup.getMovieInfo: Es la función que se ejecutará cuando se haga clic en uno de esos enlaces.
+La última línea dentro de la función setup tenemos  `$(document)`, con esto seleccionamos el objeto document, que representa todo el documento HTML y `.on('click', '#movies a', MoviePopup.getMovieInfo)` establece un manejador de eventos en el documento (document). Los parámetros de esta función `.on` son los siguientes: 'click' que especifica que estamos manejando el evento de clic, '#movies a' selecciona todos los elementos de anclaje (a) que son descendientes de elementos con el ID movies y MoviePopup.getMovieInfo es la función que se ejecutará cuando se haga clic en uno de esos enlaces.
 
 La función getMovieInfo se encarga de recuperar información detallada sobre una película. Para lograrlo, realiza una solicitud AJAX `($.ajax)` de tipo GET a la URL especificada en el atributo href del enlace que fue clicado `($(this).attr('href'))`. Se establece un límite de tiempo de 5 segundos (timeout: 5000). En caso de que la solicitud sea exitosa, la función `MoviePopup.showMovieInfo` se invoca con los datos recibidos. En caso de un error en la solicitud, se muestra una alerta. La función retorna false con el fin de prevenir la acción predeterminada del enlace.
 
 La función showMovieInfo despliega información detallada de la película en una ventana emergente. Para lograrlo, centra la ventana en la pantalla, ajustando sus propiedades de posición y tamaño. Luego, llena la ventana con el contenido HTML obtenido como respuesta de la solicitud AJAX (data), y la presenta visualmente mediante `$('#movieInfo').show()`. Además, se vincula un evento de clic al enlace de cierre (#closeLink), el cual invoca la función MoviePopup.hideMovieInfo. Finalmente, la función retorna false para evitar la ejecución de la acción predeterminada del enlace.
 
+La funcion hideMovieInfo oculta la ventana emergente con ($('#movieInfo').hide()) y retorna false para prevenir la acción predeterminada del enlace.
 
+Finalemente, MoviePopup.setup se pasa como una función a $(), que es una abreviatura de $(document).ready(). Esto significa que cuando la página se carga, la función setup del objeto MoviePopup se ejecutará cuando el documento HTML ha sido completamente cargado. La notación $(document).ready() o su forma corta $(function() {...}) en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOcuando el documento HTML ha sido completamente cargado. La notación $(document).ready() o su forma corta $(function() {...}) en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOM (Modelo de Objeto del Documento) esté completamente cargadoM (Modelo de Objeto del Documento) esté completamente cargado.
+
+Luego, el archivo Javascript lo incluimos en la vista de la aplicacion app/views/layouts/application.html.erb con las siguientes lienas de codigo:
+
+```
+<%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.4.min.js' %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+```
+
+Puesto que el objetivo es que la ventana emergente flote, podemos utilizar CSS para especificar la posición como absolute añadiendo el siguiente código en app/assets/stylesheets/application.css :
+
+```
+#movieInfo {
+  padding: 2ex;
+  position: absolute;
+  border: 2px double grey;
+  background: wheat;
+}
+
+```
+
+Para lograr el comportamiento y la apariencia deseados de la ventana emergente de información de la película.
 
