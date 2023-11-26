@@ -152,7 +152,6 @@ Ahora al hacer clic en una pelicula podemos apreciar un vista parcial de la desc
 ![3](https://github.com/miguelvega/Ajax/assets/124398378/725dd7bc-7905-4e79-90a0-21d566f0466e)
 
 Al hacer clic en cancelar se cierra la ventana emergente y si hacemos clic en Edit movie nos dirigira a la vista correspondiente a la edicion de una pelicula.
-![3](https://github.com/miguelvega/Ajax/assets/124398378/725dd7bc-7905-4e79-90a0-21d566f0466e)
-![4](https://github.com/miguelvega/Ajax/assets/124398378/a69afa54-05b2-477e-b6de-9bd36b48d5f4)
+
 ![4](https://github.com/miguelvega/Ajax/assets/124398378/a69afa54-05b2-477e-b6de-9bd36b48d5f4)
 
