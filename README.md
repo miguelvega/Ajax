@@ -120,9 +120,9 @@ La función getMovieInfo se encarga de recuperar información detallada sobre un
 
 La función showMovieInfo despliega información detallada de la película en una ventana emergente. Para lograrlo, centra la ventana en la pantalla, ajustando sus propiedades de posición y tamaño. Luego, llena la ventana con el contenido HTML obtenido como respuesta de la solicitud AJAX (data), y la presenta visualmente mediante `$('#movieInfo').show()`. Además, se vincula un evento de clic al enlace de cierre (#closeLink), el cual invoca la función MoviePopup.hideMovieInfo. Finalmente, la función retorna false para evitar la ejecución de la acción predeterminada del enlace.
 
-La funcion hideMovieInfo oculta la ventana emergente con ($('#movieInfo').hide()) y retorna false para prevenir la acción predeterminada del enlace.
+La funcion hideMovieInfo oculta la ventana emergente con `($('#movieInfo').hide())` y retorna false para prevenir la acción predeterminada del enlace.
 
-Finalemente, MoviePopup.setup se pasa como una función a $(), que es una abreviatura de $(document).ready(). Esto significa que cuando la página se carga, la función setup del objeto MoviePopup se ejecutará cuando el documento HTML ha sido completamente cargado. La notación $(document).ready() o su forma corta $(function() {...}) en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOcuando el documento HTML ha sido completamente cargado. La notación $(document).ready() o su forma corta $(function() {...}) en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOM (Modelo de Objeto del Documento) esté completamente cargadoM (Modelo de Objeto del Documento) esté completamente cargado.
+Finalemente, MoviePopup.setup se pasa como una función a `$()`, que es una abreviatura de `$(document).ready()`. Esto significa que cuando la página se carga, la función setup del objeto MoviePopup se ejecutará cuando el documento HTML ha sido completamente cargado. La notación `$(document).ready()` o su forma corta `$(function() {...})` en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOcuando el documento HTML ha sido completamente cargado. La notación $(document).ready() o su forma corta `$(function() {...})` en jQuery se utiliza para asegurarse de que el código dentro de ella se ejecute después de que el DOM (Modelo de Objeto del Documento) esté completamente cargadoM (Modelo de Objeto del Documento) esté completamente cargado.
 
 Luego, el archivo Javascript lo incluimos en la vista de la aplicacion app/views/layouts/application.html.erb con las siguientes lienas de codigo:
 
@@ -145,4 +145,14 @@ Puesto que el objetivo es que la ventana emergente flote, podemos utilizar CSS p
 ```
 
 Para lograr el comportamiento y la apariencia deseados de la ventana emergente de información de la película.
+
+### ¿Cuáles son tus resultados?
+Ahora al hacer clic en una pelicula podemos apreciar un vista parcial de la descripccion de la pelicula en una ventana emergente.
+
+![3](https://github.com/miguelvega/Ajax/assets/124398378/725dd7bc-7905-4e79-90a0-21d566f0466e)
+
+Al hacer clic en cancelar se cierra la ventana emergente y si hacemos clic en Edit movie nos dirigira a la vista correspondiente a la edicion de una pelicula.
+![3](https://github.com/miguelvega/Ajax/assets/124398378/725dd7bc-7905-4e79-90a0-21d566f0466e)
+![4](https://github.com/miguelvega/Ajax/assets/124398378/a69afa54-05b2-477e-b6de-9bd36b48d5f4)
+![4](https://github.com/miguelvega/Ajax/assets/124398378/a69afa54-05b2-477e-b6de-9bd36b48d5f4)
 
