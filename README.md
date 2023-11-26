@@ -151,7 +151,13 @@ Ahora al hacer clic en una pelicula podemos apreciar un vista parcial de la desc
 
 ![3](https://github.com/miguelvega/Ajax/assets/124398378/725dd7bc-7905-4e79-90a0-21d566f0466e)
 
-Al hacer clic en cancelar se cierra la ventana emergente y si hacemos clic en Edit movie nos dirigira a la vista correspondiente a la edicion de una pelicula.
+Al hacer clic en cancelar se cierra la ventana emergente y si hacemos clic en Edit Movie nos dirigira a la vista correspondiente a la edicion de una pelicula.
 
 ![4](https://github.com/miguelvega/Ajax/assets/124398378/a69afa54-05b2-477e-b6de-9bd36b48d5f4)
+
+## Parte 3
+
+Conviene mencionar una advertencia a considerar cuando se usa JavaScript para crear nuevos elementos dinámicamente en tiempo de ejecución, aunque no surgió en este ejemplo en concreto. Sabemos que $(.myClass).on(click,func) registra func como el manejador de eventos de clic para todos los elementos actuales que coincidan con la clase CSS myClass. Pero si se utiliza JavaScript para crear nuevos elementos que coincidan con myClass después de la carga inicial de la página y de la llamada inicial a on, dichos elementos no tendrán el manejador asociado, ya que on sólo puede asociar manejadores a elementos existentes.
+
+### ¿Cuál es solución que brinda jQuery a este problema?
 
